@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ViewTodaysITasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewTodaysITasks</h2>
+
+@{
+
+    TASKSDBEntities1 db = new TASKSDBEntities1();
+
+    var allTasks = from m in db.TaskTables
+                       //join o in db.Movies on m.MovieId equals o.MovieId
+                       //join c in db.Customers on m.CustomerId equals c.CustomerId
+                   where m.TaskDueDate == DateTime.Today &&
+                   m.TaskCompletionDate == null
+                   select new
+                   {
+                       Taskname = m.TaskTitle,
+
+                       TaskDescription = m.TaskDescription,
+
+                       TaskDate = m.TaskDueDate
+                   };
+
+}
+
+
+<table style="border: 2px solid Blue">
+    <tr>
+        <th style="border: 2px solid Blue">Task Name</th>
+        <th style="border: 2px solid Blue">Description</th>
+        <th style="border: 2px solid Blue">Task Due Date</th>
+    </tr>
+    @foreach (var Task in allTasks)
+    {
+        <tr style="border: 2px solid Blue">
+            <td style="border: 2px solid Blue">@Task.Taskname</td>
+            <td style="border: 2px solid Blue">@string.Format("{0:M/d/yyyy}", Task.TaskDescription)</td>
+            <td style="border: 2px solid Blue">@Task.TaskDate</td>
+        </tr>
+
+    }
+</table>
