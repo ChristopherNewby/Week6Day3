@@ -205,27 +205,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\PartialClass.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="TaskDB.Context.cs">
+    <Compile Include="TASKSDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskDB.Context.tt</DependentUpon>
+      <DependentUpon>TASKSDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TaskDB.cs">
+    <Compile Include="TASKSDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskDB.tt</DependentUpon>
+      <DependentUpon>TASKSDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TaskDB.Designer.cs">
+    <Compile Include="TASKSDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskDB.edmx</DependentUpon>
+      <DependentUpon>TASKSDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="TaskTable.cs">
-      <DependentUpon>TaskDB.tt</DependentUpon>
+      <DependentUpon>TASKSDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTable.cs">
+      <DependentUpon>TASKSDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -254,15 +258,15 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="TaskDB.Context.tt">
+    <Content Include="TASKSDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TaskDB.edmx</DependentUpon>
-      <LastGenOutput>TaskDB.Context.cs</LastGenOutput>
+      <DependentUpon>TASKSDB.edmx</DependentUpon>
+      <LastGenOutput>TASKSDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TaskDB.tt">
+    <Content Include="TASKSDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TaskDB.edmx</DependentUpon>
-      <LastGenOutput>TaskDB.cs</LastGenOutput>
+      <DependentUpon>TASKSDB.edmx</DependentUpon>
+      <LastGenOutput>TASKSDB.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -276,7 +280,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -298,13 +301,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <EntityDeploy Include="TaskDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TaskDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="TaskDB.edmx.diagram">
-      <DependentUpon>TaskDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\TaskTables\Create.cshtml" />
     <Content Include="Views\TaskTables\Edit.cshtml" />
     <Content Include="Views\TaskTables\Delete.cshtml" />
@@ -317,6 +313,13 @@
     <Content Include="Views\TaskTables\ViewTomorrowsTasks.cshtml" />
     <Content Include="Views\TaskTables\ViewTomorrowsCTasks.cshtml" />
     <Content Include="Views\TaskTables\ViewTomorrowsITasks.cshtml" />
+    <EntityDeploy Include="TASKSDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TASKSDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="TASKSDB.edmx.diagram">
+      <DependentUpon>TASKSDB.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

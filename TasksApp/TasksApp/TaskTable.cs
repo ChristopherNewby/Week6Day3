@@ -14,10 +14,19 @@ namespace TasksApp
     
     public partial class TaskTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaskTable()
+        {
+            this.UserTables = new HashSet<UserTable>();
+        }
+    
         public int TaskID { get; set; }
         public string TaskTitle { get; set; }
         public string TaskDescription { get; set; }
         public System.DateTime TaskDueDate { get; set; }
         public Nullable<System.DateTime> TaskCompletionDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserTable> UserTables { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace TasksApp
     public partial class TASKSDBEntities1 : DbContext
     {
         public TASKSDBEntities1()
-            : base("name=TASKSDBEntities1")
+            : base("name=TASKSDBEntities3")
         {
         }
     
@@ -26,5 +26,6 @@ namespace TasksApp
         }
     
         public virtual DbSet<TaskTable> TaskTables { get; set; }
+        public virtual DbSet<UserTable> UserTables { get; set; }
     }
 }

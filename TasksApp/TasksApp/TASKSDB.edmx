@@ -15,8 +15,33 @@
           <Property Name="TaskDueDate" Type="date" Nullable="false" />
           <Property Name="TaskCompletionDate" Type="date" />
         </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="TaskID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserTable_TaskTable">
+          <End Role="TaskTable" Type="Self.TaskTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTable">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TASKSDBModelStoreContainer">
           <EntitySet Name="TaskTable" EntityType="Self.TaskTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserTable_TaskTable" Association="Self.FK_UserTable_TaskTable">
+            <End Role="TaskTable" EntitySet="TaskTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -32,16 +57,43 @@
           <Property Name="TaskDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TaskDueDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TaskCompletionDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserTables" Relationship="Self.FK_UserTable_TaskTable" FromRole="TaskTable" ToRole="UserTable" />
         </EntityType>
-        <EntityContainer Name="TASKSDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaskID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TaskTable" Relationship="Self.FK_UserTable_TaskTable" FromRole="UserTable" ToRole="TaskTable" />
+        </EntityType>
+        <Association Name="FK_UserTable_TaskTable">
+          <End Role="TaskTable" Type="Self.TaskTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTable">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TASKSDBEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TaskTables" EntityType="Self.TaskTable" />
+          <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK_UserTable_TaskTable" Association="Self.FK_UserTable_TaskTable">
+            <End Role="TaskTable" EntitySet="TaskTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TASKSDBModelStoreContainer" CdmEntityContainer="TASKSDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="TASKSDBModelStoreContainer" CdmEntityContainer="TASKSDBEntities3">
           <EntitySetMapping Name="TaskTables">
             <EntityTypeMapping TypeName="TASKSDBModel.TaskTable">
               <MappingFragment StoreEntitySet="TaskTable">
@@ -50,6 +102,15 @@
                 <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
                 <ScalarProperty Name="TaskDueDate" ColumnName="TaskDueDate" />
                 <ScalarProperty Name="TaskCompletionDate" ColumnName="TaskCompletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="TASKSDBModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

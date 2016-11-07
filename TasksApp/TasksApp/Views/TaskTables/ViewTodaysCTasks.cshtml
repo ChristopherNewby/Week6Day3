@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewTodaysCTasks</h2>
+<h2>View Todays Completed Tasks</h2>
 
 @{
 
@@ -21,24 +21,28 @@
 
                        TaskDescription = m.TaskDescription,
 
-                       TaskDate = m.TaskDueDate
+                       TaskDate = m.TaskDueDate,
+
+                        TaskCompDate = m.TaskCompletionDate
                    };
 
 }
 
 
-<table style="border: 2px solid Blue">
+<table style="border: 2px solid Black">
     <tr>
-        <th style="border: 2px solid Blue">Task Name</th>
-        <th style="border: 2px solid Blue">Description</th>
-        <th style="border: 2px solid Blue">Task Due Date</th>
+        <th style="border: 2px solid Black">Task Name</th>
+        <th style="border: 2px solid Black">Description</th>
+        <th style="border: 2px solid Black">Task Due Date</th>
+        <th style="border: 2px solid Black">Task Completion Date</th>
     </tr>
     @foreach (var Task in allTasks)
     {
         <tr style="border: 2px solid Blue">
-            <td style="border: 2px solid Blue">@Task.Taskname</td>
-            <td style="border: 2px solid Blue">@string.Format("{0:M/d/yyyy}", Task.TaskDescription)</td>
-            <td style="border: 2px solid Blue">@Task.TaskDate</td>
+            <td style="border: 2px solid Black">@Task.Taskname</td>
+            <td style="border: 2px solid Black">@Task.TaskDescription)</td>
+            <td style="border: 2px solid Black">@string.Format("{0:M/d/yyyy}", Task.TaskDate)</td>
+            <td style="border: 2px solid Black">@string.Format("{0:M/d/yyyy}", Task.TaskCompDate)</td>
         </tr>
 
     }
